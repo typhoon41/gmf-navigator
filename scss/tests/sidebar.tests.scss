@@ -1,0 +1,59 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../modules/sidebar';
+
+@include describe('create-sidebar()') {
+    @include it('should return class definitions for creation of a basic sidebar/vertical menu') {
+        @include assert {
+            @include output(false) {
+                @include create-sidebar();
+            }
+
+            @include expect(false) {
+                $vertical-menu-gap: 5px;
+
+                .gmf-vertical-menu {
+                    position: fixed;
+                    top: $header-height;
+                    height: calc(100% - #{$header-height} - #{$footer-height} - #{$vertical-menu-gap});
+                    padding-bottom: $vertical-menu-gap;
+                    border-right: $border;
+                    background-color: $base-menu-color;
+                    z-index: 1000;
+
+                    .gmf-link.icon-link {
+                        min-height: 20px;
+                        margin: 0;
+                    }
+
+                    .gmf-link-text {
+                        display: block;
+                        text-align: left;
+                        @include break-word();
+                    }
+                }
+
+                .gmf-vertical-list {
+                    height: calc(100% - #{2 * ($vertical-menu-gap + 1px)});
+
+                    margin: {
+                        top: 0;
+                        bottom: $vertical-menu-gap;
+                    }
+
+                    padding: $vertical-menu-gap $vertical-menu-gap $vertical-menu-gap 0;
+
+                    overflow: {
+                        x: hidden;
+                        y: auto;
+                    }
+
+                    direction: rtl;
+
+                    .gmf-link-component {
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+}

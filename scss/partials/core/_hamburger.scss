@@ -1,0 +1,46 @@
+﻿@import '../../modules/hamburger';
+
+.gmf-hamburger {
+    display: none;
+    width: 33px;
+    height: 32px;
+    padding: 0;
+    float: left;
+    color: transparent;
+    text-align: center;
+}
+
+.gmf-hamburger-line {
+    @extend %line;
+    position: relative;
+    top: 3%;
+    transition: background .2s;
+
+    &::before {
+        @extend %line;
+        @extend %outer-line;
+        bottom: 6px;
+    }
+
+    &::after {
+        @extend %line;
+        @extend %outer-line;
+        top: 6px;
+    }
+
+    .gmf-menu.is-menu-expanded & {
+        background: rgba($base-text-color, 0);
+
+        &::before {
+            transform: translateX(4px) translateY(-3px) rotate(45deg);
+        }
+
+        &::after {
+            transform: translateX(4px) translateY(2px) rotate(-45deg);
+        }
+
+        &::before, &::after {
+            background: rgba($base-text-color, 1);
+        }
+    }
+}

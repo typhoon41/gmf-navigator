@@ -1,0 +1,40 @@
+﻿@import '../../modules/variables';
+@import '../../modules/transform';
+@import '../../modules/borders';
+
+.gmf-action-component {
+    display: inline-block;
+    margin: 0 $header-margin;
+    border: 2px solid transparent;
+    list-style: none;
+    cursor: pointer;
+    @include border-radius($base-border-radius);
+
+    &:not(.collapsed) {
+        &:not(.page-marker):hover {
+            border: $border;
+            background-color: $hover-color;
+
+            .gmf-link {
+                @include vibrate();
+            }
+        }
+
+        &.page-marker {
+            border: $border;
+            background-color: $marker-color;
+        }
+    }
+
+    &:hover > .gmf-link {
+        color: darken($base-text-color, 30%);
+        font-weight: 500;
+    }
+}
+
+.gmf-link-component {
+    @extend .gmf-action-component;
+    display: block;
+    padding: 7px 10px;
+    direction: ltr;
+}

@@ -1,0 +1,103 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../modules/flags';
+@import '../modules/layout';
+
+$test-environment: true;
+
+@mixin content {
+    display: block;
+    float: right;
+}
+
+@mixin assert-width($left-shift, $with-transition) {
+    @each $name, $value in $breakpoints {
+        $vertical-menu-size: get-size($name);
+
+        @if($left-shift) {
+            $vertical-menu-size: $vertical-menu-size * -1;
+        }
+
+        @include assert {
+            @include output {
+                @include min-width-shift($name, $left-shift, $with-transition) {
+                    @include content();
+                }
+            }
+
+            @include expect {
+                @media only screen and (min-width: get-size($name, false)) {
+                    @include content();
+
+                    $transition-value: 'transform .3s';
+
+                    @if($with-transition) {
+                        $transition-value: $transition-value + ', width .3s';
+                    }
+
+                    transition: unquote($transition-value);
+                    transform: translateX($vertical-menu-size);
+                }
+            }
+        }
+    }
+}
+
+@include describe('get-size()') {
+    @include it('should return size of a layout breakpoint') {
+        @each $name, $value in $breakpoints {
+            @include assert-equal(get-size($name, false), map-get(map-get($breakpoints, $name), size));
+        }
+    }
+
+    @include it('should return size of a vertical menu width') {
+        @each $name, $value in $breakpoints {
+            @include assert-equal(get-size($name, true), map-get(map-get($breakpoints, $name), vertical-menu-width));
+        }
+    }
+
+    @include it('should throw an error if invalid layout size is given') {
+        $invalid-layouts: 'mob' 'tablett' 'desk' 'medium' 'large';
+
+        @each $name in $invalid-layouts {
+            @include assert-equal(get-size($name, false), 'Size must be mobile, tablet or desktop!');
+        }
+    }
+}
+
+@include describe('min-width(size)') {
+    @include it('should return content wrapped around media query for any given size') {
+        @each $name, $value in $breakpoints {
+            @include assert {
+                @include output {
+                    @include min-width($name) {
+                        @include content();
+                    }
+                }
+
+                @include expect {
+                    @media only screen and (min-width: get-size($name, false)) {
+                        @include content();
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include describe('min-width-shift(size, shift-left, with-transition)') {
+    @include it('should return content wrapped around media query for any given size with shifting left and no transition') {
+        @include assert-width(true, false);
+    }
+
+    @include it('should return content wrapped around media query for any given size with shifting right and no transition') {
+        @include assert-width(false, false);
+    }
+
+    @include it('should return content wrapped around media query for any given size with shifting left and transition') {
+        @include assert-width(true, true);
+    }
+
+    @include it('should return content wrapped around media query for any given size with shifting right and transition') {
+        @include assert-width(false, true);
+    }
+}

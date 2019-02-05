@@ -1,0 +1,99 @@
+$animation-name: hover-vertical-jump;
+
+@mixin define-vibration() {
+    @keyframes #{$animation-name} {
+        16.65% {
+            @include -transform-translate(2px, true);
+        }
+
+        33.3% {
+            @include -transform-translate(-1px, true);
+        }
+
+        49.95% {
+            @include -transform-translate(1px, true);
+        }
+
+        66.6% {
+            @include -transform-translate(-1px, true);
+        }
+
+        83.25% {
+            @include -transform-translate(1px, true);
+        }
+
+        100% {
+            @include -transform-translate(0, true);
+        }
+    }
+}
+
+@mixin -transform-translate($unit, $heigth: false) {
+    @if($heigth) {
+        transform: translateY($unit);
+    }
+
+    @else {
+        transform: translateX($unit);
+    }
+}
+
+@mixin -transform-width-transition($transition) {
+    $transition-value: 'transform .3s';
+
+    @if($transition) {
+        $transition-value: $transition-value + ', width .3s';
+    }
+
+    transition: unquote($transition-value);
+}
+
+@mixin shift-left($width: 0, $transition: false) {
+    @include -transform-width-transition($transition);
+    @include -transform-translate(-$width);
+}
+
+@mixin shift-left-for($size, $transition: false) {
+    @include shift-left(get-size($size), $transition);
+}
+
+@mixin shift-right($width: 0, $transition: false) {
+    @include -transform-width-transition($transition);
+    @include -transform-translate($width);
+}
+
+@mixin shift-right-for($size, $transition: false) {
+    @include shift-right(get-size($size), $transition);
+}
+
+@mixin vibrate() {
+    text-decoration: none;
+    animation: {
+        iteration-count: 1;
+        timing-function: ease-in-out;
+        duration: 1s;
+        name: $animation-name;
+    }
+}
+
+@mixin center($xy: xy) {
+    @if $xy == xy {
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    @else if $xy == x {
+        right: auto;
+        left: 50%;
+        @include -transform-translate(-50%);
+    }
+
+    @else if $xy == y {
+        top: 50%;
+        bottom: auto;
+        @include -transform-translate(-50%, true);
+    }
+}

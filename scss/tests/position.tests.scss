@@ -1,0 +1,17 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../modules/position';
+
+@include describe('align-children-vertically()') {
+    @include it('should return properties which will align child content vertically') {
+        @include assert {
+            @include output {
+                @include align-children-vertically();
+            }
+
+            @include expect {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}

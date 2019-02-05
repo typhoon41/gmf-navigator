@@ -1,0 +1,81 @@
+﻿@import '../../modules/variables';
+@import '../../modules/flags';
+@import '../../modules/effects';
+@import '../../modules/layout';
+@import '../../modules/transform';
+@import '../../modules/borders';
+
+$has-vertical-trigger: true;
+
+.gmf-vertical-trigger {
+    position: fixed;
+    top: 0;
+    left: calc(100% + #{$tongue-width});
+    margin: 0;
+
+    border: {
+        right: $border;
+        bottom: $border;
+    }
+
+    background: $base-menu-color;
+    visibility: visible;
+    @include border-radius(0 10px 10px 0);
+
+    .gmf-action-component {
+        margin: {
+            right: 5px;
+            left: 2px;
+        }
+    }
+
+    .gmf-hamburger {
+        display: block;
+        padding: 3px;
+
+        .gmf-hamburger-line {
+            display: inline-block;
+            overflow: visible;
+        }
+    }
+
+    @if($responsive) {
+        @if($has-horizontal-menu) {
+            .responsive.has-main-menu & {
+                @include show-on(tablet);
+            }
+        }
+
+        .gmf-menu.responsive & {
+            left: 0;
+
+            @include min-width(tablet) {
+                left: calc(100% + #{$tongue-width});
+            }
+        }
+    }
+
+    .is-menu-expanded .gmf-vertical-menu & {
+        left: 100%;
+    }
+}
+
+@if($responsive) {
+    .gmf-menu.responsive {
+        @if($has-horizontal-menu) {
+            .gmf-horizontal-menu .gmf-hamburger {
+                @include hide-on(tablet);
+            }
+        }
+
+        .gmf-icon-menu {
+            @include show-on(tablet);
+        }
+    }
+}
+
+@if(not($responsive) and $has-horizontal-menu) {
+    .gmf-menu .gmf-horizontal-menu .gmf-hamburger {
+        display: none;
+    }
+}

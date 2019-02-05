@@ -1,0 +1,90 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../modules/effects';
+
+@include describe('fade-in()') {
+    @include it('should return transition of visibility and opacity to visible') {
+        @include assert {
+            @include output {
+                @include fade-in();
+            }
+
+            @include expect {
+                transition: opacity .5s ease-in-out, visibility .5s ease-in-out;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+
+@include describe('fade-out()') {
+    @include it('should return transition of visibility and opacity to invisible') {
+        @include assert {
+            @include output {
+                @include fade-out();
+            }
+
+            @include expect {
+                transition: none;
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+    }
+}
+
+@include describe('break-word()') {
+    @include it('should break a word in multiple lines') {
+        @include assert {
+            @include output {
+                @include break-word();
+            }
+
+            @include expect {
+                white-space: pre-line;
+                overflow: hidden;
+                word-wrap: break-word;
+            }
+        }
+    }
+}
+
+@include describe('show-on()') {
+    @include it('should show a content on a certain resolution') {
+        @each $name, $value in $breakpoints {
+            @include assert {
+                @include output {
+                    @include show-on($name);
+                }
+
+                @include expect {
+                    display: none;
+
+                    @include min-width($name) {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include describe('hide-on()') {
+    @include it('should hide a content on a certain resolution') {
+        @each $name, $value in $breakpoints {
+            @include assert {
+                @include output {
+                    @include hide-on($name);
+                }
+
+                @include expect {
+                    display: block;
+
+                    @include min-width($name) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

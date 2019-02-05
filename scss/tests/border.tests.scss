@@ -1,0 +1,33 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../modules/borders';
+
+@include describe('border-radius(radius)') {
+    @include it('should return border with radius if curved borders are applied globally') {
+        @include assert {
+            $some-border-radius: 3px;
+
+            @include output {
+                @include border-radius($some-border-radius);
+            }
+
+            @include expect {
+                border-radius: $some-border-radius;
+            }
+        }
+    }
+
+    @include it('should return nothing if curved borders are not applied globally') {
+        @include assert {
+            $some-border-radius: 3px;
+
+            @include output {
+                $curved-borders: false;
+                @include border-radius($some-border-radius);
+            }
+
+            @include expect {
+                border-radius: $some-border-radius;
+            }
+        }
+    }
+}

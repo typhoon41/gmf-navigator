@@ -1,0 +1,35 @@
+﻿@import '../modules/variables';
+@import '../modules/layout';
+
+$footer-height: 34px;
+
+.gmf-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: $footer-height;
+    padding-right: 20px;
+    border-top: $border;
+    background: $footer-color;
+
+    font: {
+        family: $font;
+        size: $font-size - 1px;
+    }
+
+    z-index: 1001;
+
+    .gmf-footer-about {
+        margin: {
+            top: 8px;
+            bottom: 8px;
+        }
+
+        float: right;
+    }
+
+    @include min-width(tablet) {
+        z-index: 1000;
+    }
+}

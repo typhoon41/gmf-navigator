@@ -1,0 +1,46 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../modules/icons';
+
+@include describe('icon-down()') {
+    @include it('should return definition for icon arrow down direction') {
+        @include assert {
+            @include output {
+                @include icon-down();
+            }
+
+            @include expect {
+                display: block;
+                right: 7px;
+                width: 0;
+                height: 0;
+                border-right: 5px solid transparent;
+                border-left: 5px solid transparent;
+                content: '';
+                border-top: 5px solid $base-text-color;
+                border-bottom: 0;
+            }
+        }
+    }
+}
+
+@include describe('icon-up()') {
+    @include it('should return definition for icon arrow up direction') {
+        @include assert {
+            @include output {
+                @include icon-up();
+            }
+
+            @include expect {
+                display: block;
+                right: 7px;
+                width: 0;
+                height: 0;
+                border-right: 5px solid transparent;
+                border-left: 5px solid transparent;
+                content: '';
+                border-top: 0;
+                border-bottom: 5px solid $base-text-color;
+            }
+        }
+    }
+}

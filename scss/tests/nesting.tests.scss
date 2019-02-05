@@ -1,0 +1,86 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../modules/nesting';
+
+@include describe('nesting-definition()') {
+    @include it('should return class definitions for general nesting') {
+        @include assert {
+            @include output(false) {
+                @include nesting-definition();
+            }
+
+            @include expect(false) {
+                .has-children {
+                    &.collapsed {
+                        border: $border;
+                        background-color: $hover-color;
+                        @include border-radius($base-border-radius);
+
+                        > gmf-link::after {
+                            @include icon-up();
+                        }
+                    }
+
+                    > .gmf-link {
+                        padding-right: 25px;
+
+                        &::after {
+                            position: absolute;
+                            @include center(y);
+                            @include icon-down();
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include describe('vertical-nesting-definition()') {
+    @include it('should return class definitions for vertical nesting only') {
+        @include assert {
+            @include output(false) {
+                @include vertical-nesting-definition();
+            }
+
+            @include expect(false) {
+                .gmf-vertical-children {
+                    position: absolute;
+                    padding: 5px 8px 9px;
+                    border-top: solid darken($base-menu-color, 8%);
+                    background: $base-menu-color;
+                    white-space: nowrap;
+                    @include fade-out();
+
+                    .gmf-link {
+                        padding-right: 0;
+                    }
+
+                    .gmf-link-component {
+                        margin: {
+                            right: 0;
+                            left: 0;
+                        }
+                    }
+                }
+
+                .is-menu-expanded .has-children.collapsed .gmf-vertical-children {
+                    position: relative;
+                    @include border-radius($base-border-radius);
+                    @include fade-in();
+                }
+
+                .gmf-vertical-list .has-children {
+                    margin-right: 3px;
+
+                    &.collapsed {
+                        padding: 6px 10px 10px;
+
+                        > .gmf-link {
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../partials/polyfills/modules/resolver';
+@import '../modules/layout';
+
+@mixin content {
+    display: block;
+    float: right;
+}
+
+@include describe('ie-only') {
+    @include it('should return content wrapped around media query for IE only') {
+        @each $name, $value in $breakpoints {
+            @include assert {
+                @include output {
+                    @include ie-only() {
+                        @include content();
+                    }
+                }
+
+                @include expect {
+                    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                        @include content();
+                    }
+                }
+            }
+        }
+    }
+}

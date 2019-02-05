@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DCA21F53-0DDF-4EC6-8C96-C65206CF4A23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gmf.Navigator</RootNamespace>
+    <AssemblyName>Gmf.Navigator</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dist\css\gmf-navigator.css" />
+    <Content Include="dist\css\gmf-navigator.min.css" />
+    <Content Include="dist\js\gmf-navigator.js" />
+    <Content Include="dist\js\gmf-navigator.min.js" />
+    <Content Include="examples\full\files\fontello.css" />
+    <Content Include="examples\full\files\fontello.svg" />
+    <Content Include="examples\full\files\gmf-injector.js" />
+    <Content Include="examples\full\files\gmf-navigator.css" />
+    <Content Include="examples\full\files\gmf-navigator.js" />
+    <Content Include="examples\full\files\jquery-3.js" />
+    <Content Include="examples\full\files\logo.png" />
+    <Content Include="examples\full\files\reflect.js" />
+    <Content Include="examples\full\index.html" />
+    <Content Include="gmf-injector.min.js" />
+    <Content Include="jest.config.js" />
+    <Content Include="shim.test.js" />
+    <Content Include="ts\dist\js\gmf-navigator.js" />
+    <Content Include="ts\dist\js\gmf-navigator.min.js" />
+    <None Include=".sasslintrc" />
+    <None Include="examples\full\files\fontello.eot" />
+    <None Include="examples\full\files\fontello.ttf" />
+    <None Include="examples\full\files\fontello.woff" />
+    <None Include="examples\full\files\fontello.woff2" />
+    <None Include="package-lock.json" />
+    <None Include="package.json" />
+    <None Include="scss\gmf-navigator.scss" />
+    <None Include="scss\modules\_borders.scss" />
+    <None Include="scss\modules\_effects.scss" />
+    <None Include="scss\modules\_flags.scss" />
+    <None Include="scss\modules\_hamburger.scss" />
+    <None Include="scss\modules\_icons.scss" />
+    <None Include="scss\modules\_layout.scss" />
+    <None Include="scss\modules\_nesting.scss" />
+    <None Include="scss\modules\_position.scss" />
+    <None Include="scss\modules\_sidebar.scss" />
+    <None Include="scss\modules\_transform.scss" />
+    <None Include="scss\modules\_variables.scss" />
+    <None Include="scss\partials\horizontal-nav\_base.scss" />
+    <None Include="scss\partials\horizontal-nav\_horizontal-nav.scss" />
+    <None Include="scss\partials\horizontal-nav\_nested-nav.scss" />
+    <None Include="scss\partials\core\_base.scss" />
+    <None Include="scss\partials\core\_body-content.scss" />
+    <None Include="scss\partials\_footer.scss" />
+    <None Include="scss\partials\core\_hamburger.scss" />
+    <None Include="scss\partials\core\_link-wrappers.scss" />
+    <None Include="scss\partials\core\_links.scss" />
+    <None Include="scss\partials\core\_logo.scss" />
+    <None Include="scss\partials\core\_menu.scss" />
+    <None Include="scss\partials\polyfills\modules\_layout.scss" />
+    <None Include="scss\partials\polyfills\modules\_resolver.scss" />
+    <None Include="scss\partials\polyfills\_base.scss" />
+    <None Include="scss\partials\polyfills\_ie.scss" />
+    <None Include="scss\partials\vertical-nav\_base.scss" />
+    <None Include="scss\partials\vertical-nav\_nested-nav.scss" />
+    <None Include="scss\partials\vertical-nav\_vertical-icon-nav.scss" />
+    <None Include="scss\partials\vertical-nav\_vertical-nav-trigger.scss" />
+    <None Include="scss\partials\vertical-nav\_vertical-nav.scss" />
+    <None Include="scss\partials\_responsiveness.scss" />
+    <Content Include="tsconfig.json" />
+    <None Include="scss\tests\border.tests.scss" />
+    <None Include="scss\tests\effects.tests.scss" />
+    <None Include="scss\tests\icons.tests.scss" />
+    <None Include="scss\tests\ie.layout.tests.scss" />
+    <None Include="scss\tests\ie.resolver.tests.scss" />
+    <None Include="scss\tests\layout.tests.scss" />
+    <None Include="scss\tests\nesting.tests.scss" />
+    <None Include="scss\tests\position.tests.scss" />
+    <None Include="scss\tests\sidebar.tests.scss" />
+    <None Include="scss\tests\transform.shifting.tests.scss" />
+    <None Include="scss\tests\transform.tests.scss" />
+    <None Include="tslint.json" />
+    <None Include="ts\dist\js\gmf-navigator.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ts\tests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ts\src\components\gmf-behaviour.ts" />
+    <TypeScriptCompile Include="ts\src\components\gmf-components.ts" />
+    <TypeScriptCompile Include="ts\src\components\gmf-device.ts" />
+    <TypeScriptCompile Include="ts\src\components\gmf-horizontal-menu.ts" />
+    <TypeScriptCompile Include="ts\src\components\gmf-menu.ts" />
+    <TypeScriptCompile Include="ts\src\components\vertical-nav\gmf-vertical-menu-builder.ts" />
+    <TypeScriptCompile Include="ts\src\components\vertical-nav\gmf-vertical-menu-components.ts" />
+    <TypeScriptCompile Include="ts\src\components\vertical-nav\gmf-vertical-menu.ts" />
+    <TypeScriptCompile Include="ts\src\extensions\JQueryExtensions.ts" />
+    <TypeScriptCompile Include="ts\src\extensions\JQueryExtensionsTypings.d.ts" />
+    <TypeScriptCompile Include="ts\src\extensions\StringExtensions.ts" />
+    <TypeScriptCompile Include="ts\src\extensions\StringExtensionsTypings.d.ts" />
+    <TypeScriptCompile Include="ts\src\gmf-injector.d.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)..\Gmf.Injector\dist\gmf-injector.min.js" "$(ProjectDir)" /y /d /f
+xcopy "$(ProjectDir)..\Gmf.Injector\dist\gmf-injector.d.ts" "$(ProjectDir)ts\src" /y /d /f</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

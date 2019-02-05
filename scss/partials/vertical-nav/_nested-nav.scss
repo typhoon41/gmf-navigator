@@ -1,0 +1,10 @@
+﻿@import '../../modules/flags';
+@import '../../modules/nesting';
+
+@if(not($has-horizontal-nesting)) {
+    @include nesting-definition();
+}
+
+@if(not($responsive) or not($has-horizontal-menu) or not($has-horizontal-nesting)) {
+    @include vertical-nesting-definition();
+}

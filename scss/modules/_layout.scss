@@ -1,0 +1,46 @@
+@import 'variables';
+@import 'flags';
+@import 'transform';
+
+// Breakpoints.
+$breakpoints: ( mobile: ( size: 480px, vertical-menu-width: $sidebar-width-tablet ), tablet: ( size: 768px, vertical-menu-width: $sidebar-width-tablet ), desktop: ( size: 1170px, vertical-menu-width: $sidebar-width-desktop ));
+
+@function get-size($size, $vertical: true) {
+    @if(map-has-key($breakpoints, $size)) {
+        $gotten-size: map-get($breakpoints, $size);
+
+        @if($vertical) {
+            @return map-get($gotten-size, vertical-menu-width);
+        }
+
+        @return map-get($gotten-size, size);
+    }
+
+    @if($test-environment) {
+        @return 'Size must be mobile, tablet or desktop!';
+    }
+
+    @error 'Size must be mobile, tablet or desktop!';
+}
+
+@mixin min-width($given-size) {
+    @media only screen and (min-width: get-size($given-size, false)) {
+        @content;
+    }
+}
+
+@mixin min-width-shift($given-size, $left, $transition: false) {
+    @media only screen and (min-width: get-size($given-size, false)) {
+        @content;
+
+        $vertical-menu-size: get-size($given-size);
+
+        @if($left) {
+            @include shift-left($vertical-menu-size, $transition);
+        }
+
+        @else {
+            @include shift-right($vertical-menu-size, $transition);
+        }
+    }
+}

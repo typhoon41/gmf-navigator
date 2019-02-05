@@ -1,0 +1,7 @@
+﻿@import 'flags';
+
+@mixin border-radius($radius) {
+    @if($curved-borders) {
+        border-radius: $radius;
+    }
+}

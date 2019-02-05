@@ -1,0 +1,47 @@
+﻿@import '../../modules/transform';
+@import '../../modules/layout';
+@import '../../modules/effects';
+@import '../../modules/variables';
+@import '../../modules/flags';
+@import '../../modules/sidebar';
+
+@if(not($responsive)) {
+    @include create-sidebar();
+}
+
+$vertical-padding-fix: 75px;
+
+.gmf-menu.has-vertical-menu .gmf-hamburger {
+    display: block;
+}
+
+.gmf-vertical-menu {
+    @if(not($responsive)) {
+        width: get-size(tablet);
+        @include shift-left-for(tablet, true);
+
+        .is-menu-expanded & {
+            @include shift-right(0, true);
+        }
+    }
+
+    @include min-width-shift(tablet, true, true) {
+        width: get-size(tablet);
+
+        &.is-fixed {
+            position: fixed;
+        }
+
+        .gmf-link.icon-link .gmf-link-text {
+            max-width: get-size(tablet) - $vertical-padding-fix;
+        }
+    }
+
+    @include min-width-shift(desktop, true, true) {
+        width: get-size(desktop);
+
+        .gmf-link.icon-link .gmf-link-text {
+            max-width: get-size(desktop) - $vertical-padding-fix;
+        }
+    }
+}

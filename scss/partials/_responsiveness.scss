@@ -1,0 +1,62 @@
+﻿@import '../modules/layout';
+@import '../modules/sidebar';
+@import '../modules/variables';
+@import '../modules/flags';
+@import '../modules/effects';
+@import '../modules/nesting';
+@import '../modules/position';
+
+$responsive: true;
+@include create-sidebar();
+
+@if($has-horizontal-menu and $has-horizontal-nesting) {
+    @include vertical-nesting-definition();
+}
+
+.gmf-menu.responsive {
+    @if($has-horizontal-menu) {
+        .gmf-horizontal-menu .gmf-hamburger {
+            display: block;
+
+            @include min-width(tablet) {
+                display: none;
+            }
+        }
+
+        .gmf-horizontal-list {
+            display: none;
+
+            @include min-width(tablet) {
+                @include align-children-vertically();
+            }
+        }
+    }
+
+    &.is-menu-expanded .gmf-vertical-menu {
+        visibility: visible;
+
+        @include min-width(tablet) {
+            @include shift-right(0, true);
+        }
+    }
+
+    .gmf-vertical-menu {
+        width: 100%;
+        visibility: hidden;
+
+        @include min-width-shift(tablet, true) {
+            width: get-size(tablet);
+            visibility: visible;
+        }
+
+        @include min-width-shift(desktop, true) {
+            width: get-size(desktop);
+        }
+    }
+
+    &:not(.has-vertical-menu) {
+        .gmf-hamburger {
+            @include hide-on(tablet);
+        }
+    }
+}

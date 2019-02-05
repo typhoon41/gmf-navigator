@@ -1,0 +1,42 @@
+﻿@import '../../modules/effects';
+@import '../../modules/nesting';
+@import '../../modules/flags';
+@import '../../modules/borders';
+
+$has-horizontal-nesting: true;
+@include nesting-definition();
+
+.gmf-horizontal-children {
+    position: absolute;
+    top: $header-height - $header-margin - 3px;
+    right: 0;
+    left: auto;
+    padding: 4px 8px 0;
+
+    border: {
+        right: $border;
+        bottom: $border;
+        left: $border;
+    }
+
+    background: $base-menu-color;
+    white-space: nowrap;
+    box-shadow: 4px 4px 7px 0 rgba($shadow-color, .6);
+    z-index: 1001;
+    @include border-radius(0 0 $base-border-radius $base-border-radius);
+    @include fade-out();
+}
+
+.gmf-horizontal-child {
+    margin: 0 0 7px;
+}
+
+.has-children {
+    .gmf-horizontal-menu & {
+        position: relative;
+    }
+
+    &.gmf-link-component.collapsed .gmf-horizontal-children {
+        @include fade-in();
+    }
+}

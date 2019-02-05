@@ -1,0 +1,79 @@
+﻿@import '../../modules/variables';
+@import '../../modules/flags';
+@import '../../modules/transform';
+@import '../../modules/layout';
+@import '../../modules/position';
+
+$tongue-width: 67px;
+
+.gmf-icon-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $tongue-width;
+    height: 100%;
+    transition: visibility .3s, opacity .3s linear;
+    border-right: $border;
+    background-color: $base-menu-color;
+    cursor: pointer;
+    opacity: 1;
+    overflow: {
+        x: hidden;
+        y: auto;
+    }
+    visibility: visible;
+    direction: rtl;
+
+    @include shift-left();
+
+    @include min-width(tablet) {
+        top: 0;
+        left: 100%;
+    }
+
+    .is-menu-expanded & {
+        opacity: 0;
+        visibility: hidden;
+        @include shift-right();
+    }
+
+    @if(not($responsive)) {
+        .gmf-menu & {
+            left: 100%;
+        }
+    }
+}
+
+.gmf-vertical-icon {
+    width: $icon-size;
+    height: $icon-size;
+    font-size: 17px;
+    @include align-children-vertically();
+}
+
+.gmf-icon-component {
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    .gmf-link-component {
+        display: inline-block;
+        margin-right: 4px;
+
+        padding: {
+            right: 8px;
+            left: 8px;
+        }
+    }
+
+    .gmf-link {
+        padding: 0;
+    }
+
+    @include min-width(tablet) {
+        .is-menu-expanded & {
+            display: none;
+        }
+    }
+}

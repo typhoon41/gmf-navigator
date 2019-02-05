@@ -1,0 +1,105 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../modules/transform';
+@import '../modules/layout';
+
+@include describe('define-vibration()') {
+    @include it('should return animation definition for content vibrating up and down') {
+        @include assert {
+            @include output {
+                @include define-vibration();
+            }
+
+            @include expect {
+                @keyframes hover-vertical-jump {
+                    16.65% {
+                        transform: translateY(2px);
+                    }
+
+                    33.3% {
+                        transform: translateY(-1px);
+                    }
+
+                    49.95% {
+                        transform: translateY(1px);
+                    }
+
+                    66.6% {
+                        transform: translateY(-1px);
+                    }
+
+                    83.25% {
+                        transform: translateY(1px);
+                    }
+
+                    100% {
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include describe('vibrate()') {
+    @include it('should return properties calling animate vibrations') {
+        @include assert {
+            @include output {
+                @include vibrate();
+            }
+
+            @include expect {
+                text-decoration: none;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in-out;
+                animation-duration: 1s;
+                animation-name: hover-vertical-jump;
+            }
+        }
+    }
+}
+
+@include describe('center(x|y)') {
+    @include it('should return properties which will center content horizontally and vertically') {
+        @include assert {
+            @include output {
+                @include center(xy);
+            }
+
+            @include expect {
+                top: 50%;
+                right: auto;
+                bottom: auto;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+        }
+    }
+
+    @include it('should return properties which will center content horizontally') {
+        @include assert {
+            @include output {
+                @include center(x);
+            }
+
+            @include expect {
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+
+    @include it('should return properties which will center content vertically') {
+        @include assert {
+            @include output {
+                @include center(y);
+            }
+
+            @include expect {
+                top: 50%;
+                bottom: auto;
+                transform: translateY(-50%);
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+﻿@import '../../modules/layout';
+@import '../../modules/variables';
+@import '../../modules/flags';
+@import '../../modules/position';
+
+$header-height: 58px;
+$has-horizontal-menu: true;
+
+.gmf-horizontal-menu {
+    position: relative;
+    width: 100%;
+    height: $header-height;
+    border-bottom: $border;
+    z-index: 1001;
+    @include align-children-vertically();
+
+    > .gmf-action-component {
+        padding: 3px;
+    }
+
+    @include min-width(tablet) {
+        z-index: 1000;
+    }
+}
+
+.gmf-horizontal-list {
+    @include align-children-vertically();
+    margin: 0 10px 0 auto;
+    padding-left: 0;
+
+    > .gmf-action-component {
+        display: inline-block;
+    }
+}

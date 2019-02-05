@@ -1,0 +1,138 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../modules/effects';
+
+@include describe('shift-left(width, with-transition)') {
+    @include it('should shift content left in pixels with no transition') {
+        @include assert {
+            $move-left-for: 100px;
+
+            @include output {
+                @include shift-left($move-left-for);
+            }
+
+            @include expect {
+                transition: transform .3s;
+                transform: translateX(-$move-left-for);
+            }
+        }
+    }
+
+    @include it('should shift content left in pixels with transition') {
+        @include assert {
+            $move-left-for: 500px;
+
+            @include output {
+                @include shift-left($move-left-for, true);
+            }
+
+            @include expect {
+                transition: transform .3s, width .3s;
+                transform: translateX(-$move-left-for);
+            }
+        }
+    }
+}
+
+@include describe('shift-left-for(size, with-transition)') {
+    @include it('should shift content left for given display breakpoint with no transition') {
+        @each $name, $value in $breakpoints {
+            $display-size: get-size($name);
+
+            @include assert {
+                @include output {
+                    @include shift-left-for($name);
+                }
+
+                @include expect {
+                    transition: transform .3s;
+                    transform: translateX(-$display-size);
+                }
+            }
+        }
+    }
+
+    @include it('should shift content left for given display breakpoint with transition') {
+        @each $name, $value in $breakpoints {
+            $display-size: get-size($name);
+
+            @include assert {
+                @include output {
+                    @include shift-left-for($name, true);
+                }
+
+                @include expect {
+                    transition: transform .3s, width .3s;
+                    transform: translateX(-$display-size);
+                }
+            }
+        }
+    }
+}
+
+@include describe('shift-right(width, with-transition)') {
+    @include it('should shift content right in pixels with no transition') {
+        @include assert {
+            $move-right-for: 240px;
+
+            @include output {
+                @include shift-right($move-right-for);
+            }
+
+            @include expect {
+                transition: transform .3s;
+                transform: translateX($move-right-for);
+            }
+        }
+    }
+
+    @include it('should shift content right in pixels with transition') {
+        @include assert {
+            $move-right-for: -100px;
+
+            @include output {
+                @include shift-right($move-right-for, true);
+            }
+
+            @include expect {
+                transition: transform .3s, width .3s;
+                transform: translateX($move-right-for);
+            }
+        }
+    }
+}
+
+@include describe('shift-right-for(size, with-transition)') {
+    @include it('should shift content right for given display breakpoint with no transition') {
+        @each $name, $value in $breakpoints {
+            $display-size: get-size($name);
+
+            @include assert {
+                @include output {
+                    @include shift-right-for($name);
+                }
+
+                @include expect {
+                    transition: transform .3s;
+                    transform: translateX($display-size);
+                }
+            }
+        }
+    }
+
+    @include it('should shift content right for given display breakpoint with transition') {
+        @each $name, $value in $breakpoints {
+            $display-size: get-size($name);
+
+            @include assert {
+                @include output {
+                    @include shift-right-for($name, true);
+                }
+
+                @include expect {
+                    transition: transform .3s, width .3s;
+                    transform: translateX($display-size);
+                }
+            }
+        }
+    }
+}

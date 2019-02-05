@@ -1,0 +1,33 @@
+﻿@import '../../modules/variables';
+@import '../../modules/layout';
+@import '../../modules/transform';
+
+.gmf-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: $header-color;
+
+    font: {
+        family: $font;
+        size: $font-size;
+    }
+
+    z-index: 1001;
+
+    @include min-width(tablet) {
+        position: fixed;
+    }
+}
+
+@font-face {
+    font: {
+        family: 'Gmf Navigator Numbers';
+        style: normal;
+        weight: 700;
+    }
+
+    src: local('Times New Roman');
+    unicode-range: U+30-39;
+}

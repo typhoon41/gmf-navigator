@@ -1,0 +1,21 @@
+﻿$header-height: 58px !default; // Will be overidden if main menu is used. Must use px format for IE to recalculate correctly.
+$header-margin: 7px;
+$footer-height: 0 !default; // Will be overidden if footer is used. Must use px format for IE to recalculate correctly.
+$sidebar-width-tablet: 300px;
+$sidebar-width-desktop: 400px;
+$icon-size: 25px;
+$base-border-radius: 18px;
+$tongue-width: 0 !default; // Will be overidden if tongue menu is used. Must use px format for IE to recalculate correctly.
+
+$base-menu-color: #B2B2B2;
+$base-text-color: #3B3B3B;
+$marker-color:  transparentize(#EFFD5F, .35);
+$shadow-color: #999;
+$border-color: lighten($base-text-color, 25%);
+$border: 2px solid $border-color;
+$hover-color: transparentize(#FFF, .65);
+
+$font: Gmf Navigator Numbers, Georgia;
+$font-size: 15px;
+$header-color: linear-gradient(to top, $base-menu-color 2%, #C0C0C0 26%, #CFCFCF 60%, #DEDEDE 94%, #ECECEC 100%);
+$footer-color: linear-gradient(to top, #ECECEC 0, #DEDEDE 4%, #CFCFCF 30%, #C0C0C0 55%, $base-menu-color 100%);

@@ -1,0 +1,78 @@
+﻿@import '../../node_modules/sass-true/sass/true';
+@import '../partials/polyfills/modules/layout';
+
+@mixin content {
+    display: block;
+    float: right;
+}
+
+@mixin assert-ie-width($left-shift, $with-transition) {
+    @each $name, $value in $breakpoints {
+        $vertical-menu-size: get-size($name);
+
+        @if($left-shift) {
+            $vertical-menu-size: $vertical-menu-size * -1;
+        }
+
+        @include assert {
+            @include output {
+                @include min-ie-width-shift($name, $left-shift, $with-transition) {
+                    @include content();
+                }
+            }
+
+            @include expect {
+                @media screen and (min-width: get-size($name, false)) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                    @include content();
+
+                    $transition-value: 'transform .3s';
+
+                    @if($with-transition) {
+                        $transition-value: $transition-value + ', width .3s';
+                    }
+
+                    transition: unquote($transition-value);
+                    transform: translateX($vertical-menu-size);
+                }
+            }
+        }
+    }
+}
+
+@include describe('min-ie-width(size)') {
+    @include it('should return content wrapped around media query for any given size on IE only') {
+        @each $name, $value in $breakpoints {
+            @include assert {
+                @include output {
+                    @include min-ie-width($name) {
+                        @include content();
+                    }
+                }
+
+                @include expect {
+                    @media screen and (min-width: get-size($name, false)) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                        @include content();
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include describe('min-ie-width-shift(size, shift-left, with-transition)') {
+    @include it('should return content wrapped around media query for any given size with shifting left and no transition on IE only') {
+        @include assert-ie-width(true, false);
+    }
+
+    @include it('should return content wrapped around media query for any given size with shifting right and no transition on IE only') {
+        @include assert-ie-width(false, false);
+    }
+
+    @include it('should return content wrapped around media query for any given size with shifting left and transition on IE only') {
+        @include assert-ie-width(true, true);
+    }
+
+    @include it('should return content wrapped around media query for any given size with shifting right and transition on IE only') {
+        @include assert-ie-width(false, true);
+    }
+}

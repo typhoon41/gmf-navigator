@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "name": "gmf-navigator",
+  "private": true,
+  "scripts": {
+    "min-sass": "node-sass --output-style compressed scss/gmf-navigator.scss > dist/css/gmf-navigator.min.css",
+    "build-sass": "node-sass --output-style expanded --include-path scss scss/gmf-navigator.scss dist/css/gmf-navigator.css && npm run min-sass",
+    "glue": "concat -o dist/js/gmf-navigator.js gmf-injector.min.js ts/dist/js/gmf-navigator.js && concat -o dist/js/gmf-navigator.min.js gmf-injector.min.js ts/dist/js/gmf-navigator.js",
+    "compile": "tsc && uglifyjs ts/dist/js/gmf-navigator.js -o ts/dist/js/gmf-navigator.min.js -m",
+    "minimize": "uglifyjs dist/js/gmf-navigator.js -o dist/js/gmf-navigator.min.js -m",
+    "build-ts": "npm run compile && npm run glue && npm run minimize",
+    "build": "npm run build-sass && npm run build-ts",
+    "sass-lint": "sass-lint -v -q",
+    "ts-lint": "tslint -p tsconfig.json -e 'ts/src/**/*.d.ts' ts/src/**/*.ts",
+    "run-unit-tests": "jest --coverage --colors"
+  },
+  "dependencies": {
+    "reflect-metadata": "0.1.12"
+  },
+  "devDependencies": {
+    "typescript": "3.2.2",
+    "tslint": "5.12.1",
+    "node-sass": "4.10.0",
+    "sass-lint": "1.12.1",
+    "sass-true": "4.0.0",
+    "jest": "23.6.0",
+    "glob": "7.1.3",
+    "uglify-js": "3.4.9",
+    "@types/jquery": "3.3.9",
+    "concat": "1.0.3"
+  },
+  "-vs-binding": {
+    "AfterBuild": [
+      "install",
+      "build"
+    ]
+  }
+}

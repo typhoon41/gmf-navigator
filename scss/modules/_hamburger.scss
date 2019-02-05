@@ -1,0 +1,19 @@
+﻿@import 'variables';
+@import 'transform';
+
+%line {
+    display: inline-block;
+    width: 24px;
+    height: 3px;
+    background: $base-text-color;
+}
+
+%outer-line {
+    position: absolute;
+    right: 0;
+    transform: translateZ(0);
+    transform-origin: 0% 50%;
+    transition: transform .2s;
+    content: '';
+    backface-visibility: hidden;
+}

@@ -1,0 +1,23 @@
+﻿@import '../../../modules/layout';
+
+@mixin min-ie-width($given-size) {
+    @media screen and (min-width: get-size($given-size, false)) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        @content;
+    }
+}
+
+@mixin min-ie-width-shift($given-size, $left, $transition: false) {
+    @media screen and (min-width: get-size($given-size, false)) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        @content;
+
+        $vertical-menu-size: get-size($given-size);
+
+        @if($left) {
+            @include shift-left($vertical-menu-size, $transition);
+        }
+
+        @else {
+            @include shift-right($vertical-menu-size, $transition);
+        }
+    }
+}

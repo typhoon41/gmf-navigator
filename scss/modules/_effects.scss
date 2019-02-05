@@ -1,0 +1,36 @@
+﻿@import 'transform';
+@import 'layout';
+
+@mixin fade-in() {
+    transition: opacity .5s ease-in-out, visibility .5s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+}
+
+@mixin fade-out() {
+    transition: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+@mixin break-word() {
+    white-space: pre-line;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+@mixin show-on($screen-size) {
+    display: none;
+
+    @include min-width($screen-size) {
+        display: block;
+    }
+}
+
+@mixin hide-on($screen-size) {
+    display: block;
+
+    @include min-width($screen-size) {
+        display: none;
+    }
+}

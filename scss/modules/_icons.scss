@@ -1,0 +1,32 @@
+﻿@import 'variables';
+
+@mixin -icon() {
+    $icon-border: 5px solid transparent;
+    display: block;
+    right: 7px;
+    width: 0;
+    height: 0;
+
+    border: {
+        right: $icon-border;
+        left: $icon-border;
+    }
+
+    content: '';
+}
+
+@mixin -icon-border($direction, $value) {
+    border-#{$direction}: $value;
+}
+
+@mixin icon-down() {
+    @include -icon();
+    @include -icon-border(top, 5px solid $base-text-color);
+    @include -icon-border(bottom, 0);
+}
+
+@mixin icon-up() {
+    @include -icon();
+    @include -icon-border(top, 0);
+    @include -icon-border(bottom, 5px solid $base-text-color);
+}

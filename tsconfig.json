@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "module": "system",
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "outFile": "./ts/dist/js/gmf-navigator.js",
+    "rootDir": "./Gmf.Navigator",
+    "target": "es5",
+    "experimentalDecorators": true,
+    "typeRoots": [ "./node_modules/@types" ]
+  },
+  "exclude": ["node_modules"]
+}

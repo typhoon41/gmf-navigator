@@ -1,0 +1,25 @@
+﻿@import '../../modules/variables';
+
+.gmf-logo {
+    display: table;
+    padding: 5px 10px;
+    float: left;
+
+    img {
+        display: block;
+        width: 24px;
+        height: 24px;
+        float: left;
+    }
+}
+
+.gmf-logo-text {
+    display: table-cell;
+    padding-left: 10px;
+    color: $base-text-color;
+    vertical-align: middle;
+
+    &:hover {
+        color: inherit;
+    }
+}

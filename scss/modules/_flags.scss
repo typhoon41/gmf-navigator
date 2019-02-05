@@ -1,0 +1,7 @@
+﻿$responsive: false !default; // Will be overidden if we're using responsive menu.
+$has-horizontal-menu: false !default; // Will be overidden if we're using responsive menu.
+$has-horizontal-nesting: false !default; // Will be overidden if we're using horizontal nesting.
+$has-vertical-nesting: false !default; // Will be overidden if we're using vertical nesting.
+$has-vertical-trigger: false !default; // Will be overidden if we're using vertical nesting.
+$curved-borders: true;
+$test-environment: false !default; // Will be overidden in test environment.

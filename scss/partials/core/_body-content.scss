@@ -1,0 +1,44 @@
+﻿@import '../../modules/layout';
+@import '../../modules/variables';
+
+html, body {
+    height: 100%;
+
+    margin: {
+        top: 0;
+        right: 0;
+    }
+
+    overflow: hidden;
+}
+
+.gmf-body-container {
+    width: 100%;
+    height: calc(100vh - #{$footer-height} - #{$header-height});
+
+    margin: {
+        top: $header-height;
+        bottom: $footer-height;
+    }
+
+    overflow-y: auto;
+
+    &::before {
+        display: none;
+        content: 'mobile';
+    }
+
+    @include min-width(tablet) {
+        &::before {
+            content: 'tablet';
+        }
+    }
+
+    @include min-width(desktop) {
+        &::before {
+            content: 'desktop';
+        }
+    }
+}
+
+$header-height: 0;

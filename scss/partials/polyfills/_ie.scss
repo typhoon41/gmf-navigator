@@ -1,0 +1,94 @@
+﻿@import 'modules/resolver';
+@import 'modules/layout';
+@import '../../modules/variables';
+@import '../../modules/transform';
+@import '../../modules/variables';
+@import '../../modules/flags';
+
+@if($tongue-width > 0) {
+    @include ie-only() {
+        .gmf-menu .gmf-icon-menu {
+            top: $header-height;
+            left: 0;
+            height: calc(100% - #{$footer-height} - #{$header-height});
+            @include shift-right();
+        }
+
+        .is-menu-expanded .gmf-icon-menu {
+            @include shift-right-for(tablet);
+        }
+    }
+
+    @include min-ie-width(desktop) {
+        .is-menu-expanded .gmf-icon-menu {
+            @include shift-right-for(desktop);
+        }
+    }
+}
+
+@if($has-vertical-trigger) {
+    @include ie-only() {
+        $header-height-adjusted: $header-height - 1px;
+
+        .gmf-menu:not(.is-menu-expanded) .gmf-vertical-menu .gmf-vertical-trigger {
+            top: $header-height-adjusted;
+            left: $tongue-width;
+        }
+
+        @if($responsive) {
+            .gmf-menu.responsive {
+                &:not(.is-menu-expanded) .gmf-vertical-menu .gmf-vertical-trigger {
+                    top: $header-height-adjusted;
+                    left: 0;
+                    @include shift-left();
+                }
+
+                &.is-menu-expanded .gmf-vertical-menu .gmf-vertical-trigger {
+                    top: $header-height-adjusted;
+                    left: 100%;
+                }
+            }
+        }
+
+        @else {
+            .gmf-menu {
+                &:not(.is-menu-expanded) .gmf-vertical-menu .gmf-vertical-trigger {
+                    top: $header-height-adjusted;
+                    left: $tongue-width;
+                    @include shift-right();
+                }
+
+                &.is-menu-expanded .gmf-vertical-menu .gmf-vertical-trigger {
+                    top: $header-height-adjusted;
+                    left: 0;
+                    @include shift-right-for(tablet);
+                }
+            }
+        }
+    }
+
+    @if($responsive) {
+        .gmf-menu.responsive {
+            &.is-menu-expanded .gmf-vertical-menu .gmf-vertical-trigger {
+                @include min-ie-width-shift(tablet, false) {
+                    left: 0;
+                }
+
+                @include min-ie-width-shift(desktop, false);
+            }
+
+            &:not(.is-menu-expanded) .gmf-vertical-menu .gmf-vertical-trigger {
+                @include min-ie-width(tablet) {
+                    left: $tongue-width;
+                }
+            }
+        }
+    }
+
+    @else {
+        .gmf-menu.is-menu-expanded .gmf-vertical-menu .gmf-vertical-trigger {
+            @include min-ie-width-shift(tablet, false);
+            @include min-ie-width-shift(desktop, false);
+        }
+    }
+}
